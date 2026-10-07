@@ -1,6 +1,6 @@
 [project]
 name = "base32-geohash-encoder"
-version = "0.1.0"
+version = "0.1.1"
 description = "Encodes and decodes a Base32 alphabet variant specifically for geographic coordinate hashing."
 requires-python = ">=3.10"
 dependencies = []
