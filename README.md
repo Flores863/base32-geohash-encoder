@@ -33,3 +33,10 @@ The geohash alphabet deliberately omits `a`, `i`, `l`, `o` because they are visu
 Latitude is clamped to `[-90, 90]` and longitude to `[-180, 180]` on encode, rather than raising. This means a point at `180.000000001` hashes identically to `180.0`. If you need to detect out-of-range input, validate before encoding.
 
 Beyond roughly 12 characters of precision, float64 cannot distinguish adjacent cells, so round-tripping is not guaranteed. The library does not enforce a precision cap, but the README documents the limit.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
